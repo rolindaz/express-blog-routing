@@ -60,7 +60,7 @@ router.post('/', (req, res)=>{
 
 router.get('/', (req, res)=>{
   console.log("Here's the posts' list");
-  res.send("Here's the posts' list");
+  res.json(posts);
 });
 
 // Read - Show
@@ -68,7 +68,10 @@ router.get('/', (req, res)=>{
 router.get('/:id', (req, res)=>{
   const id = req.params.id;
   console.log(`Here's the post number ${id}`);
-  res.send(`Here's the post number ${id}`);
+  posts.forEach(post => {
+    console.log(post);
+    res.json(post);
+  });
 });
 
 // Update - Update
