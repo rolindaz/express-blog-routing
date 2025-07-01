@@ -66,13 +66,19 @@ router.get('/', (req, res)=>{
 // Read - Show
 
 router.get('/:id', (req, res)=>{
-  const id = req.params.id;
+  const id = Number(req.params.id);
   console.log(`Here's the post number ${id}`);
-  posts.forEach(post => {
+  const post = posts.find(post => post.id === id);
+
+    if (!post){
+      return res.status(404).json({
+        error: 'Not Found',
+        message: 'Post non trovato'
+      });
+    };
     console.log(post);
     res.json(post);
   });
-});
 
 // Update - Update
 
